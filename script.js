@@ -16,57 +16,24 @@ function updateCountdown() {
     document.getElementById("seconds").innerText = Math.floor((distance % (1000 * 60)) / 1000);
 }
 
-// Geri sayımı başlat ve sekme görünürlüğüne göre optimize et
 let countdownInterval = setInterval(updateCountdown, 1000);
 updateCountdown();
 document.addEventListener("visibilitychange", () => {
-    if (document.hidden) {
-        clearInterval(countdownInterval);
-    } else {
-        countdownInterval = setInterval(updateCountdown, 1000);
-    }
+    if (document.hidden) clearInterval(countdownInterval);
+    else countdownInterval = setInterval(updateCountdown, 1000);
 });
 
-// Müzik kontrol (iOS uyumlu)
-const music = document.getElementById("bg-music");
-const musicToggle = document.getElementById("music-toggle");
-const musicPause = document.getElementById("music-pause");
-const musicVolume = document.getElementById("music-volume");
-
-music.volume = 0.5;
-
-musicToggle.addEventListener("click", () => {
-    if (music.paused) {
-        music.play().then(() => {
-            musicToggle.style.display = "none";
-            musicPause.style.display = "inline";
-            musicVolume.style.display = "inline";
-        }).catch(err => {
-            console.log("Oynatma engellendi:", err);
-            alert("Müzik oynatılamadı. Lütfen cihazınızın ses ayarlarını veya tarayıcı izinlerini kontrol edin.");
-        });
-    }
+// 🎵 butonu Spotify'a yönlendiriyor
+document.getElementById("music-toggle").addEventListener("click", () => {
+    window.open("https://open.spotify.com/intl-tr/track/6JPx6Zm6k4lJEiDrs8RVEv?si=f098556aba454ee5", "_blank");
 });
 
-musicPause.addEventListener("click", () => {
-    music.pause();
-    musicPause.style.display = "none";
-    musicToggle.style.display = "inline";
-});
-
-musicVolume.addEventListener("input", () => {
-    music.volume = parseFloat(musicVolume.value);
-});
-
-// Mesaj formu aç/kapa
+// "..." butonu mesaj formunu açıyor/kapatıyor
 const messageToggle = document.getElementById("message-toggle");
 const messageForm = document.getElementById("message-form");
 
 messageToggle.addEventListener("click", () => {
-    const isFormVisible = messageForm.style.display === "none" || messageForm.style.display === "";
-    messageForm.style.display = isFormVisible ? "flex" : "none";
-    messageToggle.style.display = isFormVisible ? "none" : "inline";
-    document.getElementById("music-control").style.top = isFormVisible ? "60px" : "15px";
+    messageForm.style.display = messageForm.style.display === "flex" ? "none" : "flex";
 });
 
 // Mesaj gönderimi
@@ -89,7 +56,7 @@ sendBtn.addEventListener("click", () => {
         if (response.ok) {
             messageStatus.style.display = "inline";
             messageInput.value = "";
-            setTimeout(() => messageStatus.style.display = "none", 5000); // Süreyi artırdık
+            setTimeout(() => messageStatus.style.display = "none", 5000);
         } else {
             alert("Mesaj gönderilemedi! Formspree bağlantısını kontrol edin.");
         }

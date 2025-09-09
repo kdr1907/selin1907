@@ -58,39 +58,17 @@ body {
 
 /* Mobil uyum */
 @media (max-width: 500px) {
-    .overlay {
-        padding: 15px;
-    }
-    #countdown div {
-        padding: 8px 12px;
-        min-width: 45px;
-    }
-    #countdown span {
-        font-size: 1.6rem;
-    }
-    #countdown p {
-        font-size: 0.7rem;
-    }
-    .message-form {
-        bottom: 20px;
-        max-width: 90%;
-    }
-    .message-toggle {
-        bottom: 20px;
-        left: 10px;
-        padding: 5px 10px;
-    }
+    .overlay { padding: 15px; }
+    #countdown div { padding: 8px 12px; min-width: 45px; }
+    #countdown span { font-size: 1.6rem; }
+    #countdown p { font-size: 0.7rem; }
+    .message-form { bottom: 20px; max-width: 90%; }
+    .message-toggle { bottom: 20px; left: 10px; padding: 5px 10px; }
 }
 
-/* Çok küçük ekranlar için ek ayar */
 @media (max-width: 360px) {
-    .message-form input {
-        width: 100px;
-    }
-    #music-control {
-        top: 10px;
-        right: 10px;
-    }
+    .message-form input { width: 100px; }
+    #music-control { top: 10px; right: 10px; }
 }
 
 #music-control {
@@ -124,10 +102,6 @@ body {
     outline-offset: 2px;
 }
 
-#music-volume {
-    width: 80px;
-}
-
 /* Mesaj formu */
 .message-form {
     position: fixed;
@@ -153,28 +127,22 @@ body {
     font-size: 0.8rem;
 }
 
-.message-form input:focus {
-    outline: 2px solid #ff69b4;
-    outline-offset: 2px;
-}
-
 .message-form button {
     padding: 6px 12px;
     border-radius: 15px;
     font-size: 0.8rem;
     border: none;
-    background: #ff69b4;
-    color: white;
-    cursor: pointer;
+    background: #555; /* Kapalı renk */
+    color: #ccc;
+    cursor: not-allowed;
     transition: background 0.3s, transform 0.2s;
 }
 
 .message-form button:hover,
 .message-form button:focus {
-    background: #ff85c1;
-    transform: scale(1.05);
-    outline: 2px solid #fff;
-    outline-offset: 2px;
+    background: #555;
+    transform: none;
+    outline: none;
 }
 
 #message-status {
@@ -187,23 +155,46 @@ body {
     position: fixed;
     bottom: 20px;
     left: 10px;
-    background: #ff69b4;
+    background: #888; /* Kapalı gri ton */
     color: white;
     font-weight: bold;
     padding: 6px 12px;
     border-radius: 50%;
-    cursor: pointer;
+    cursor: pointer; /* Tıklanabilir */
     font-size: 1.2rem;
     z-index: 1001;
     text-align: center;
     line-height: 1;
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
-    transition: transform 0.2s;
+    transition: transform 0.2s, background 0.2s;
 }
 
 .message-toggle:hover,
 .message-toggle:focus {
+    background: #ff69b4; /* Hover’da açık, aktif ton */
     transform: scale(1.1);
     outline: 2px solid #fff;
     outline-offset: 2px;
+    cursor: pointer; /* Burada da pointer olmalı */
+}
+
+/* Mesaj gönder butonu */
+.message-form button {
+    padding: 6px 12px;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    border: none;
+    background: #888; /* Kapalı gri ton */
+    color: #fff;
+    cursor: pointer; /* Tıklanabilir */
+    transition: background 0.3s, transform 0.2s;
+}
+
+.message-form button:hover,
+.message-form button:focus {
+    background: #ff69b4; /* Hover’da açık, aktif ton */
+    transform: scale(1.05);
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+    cursor: pointer; /* Pointer korunuyor */
 }
