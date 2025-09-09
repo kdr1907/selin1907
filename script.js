@@ -15,8 +15,17 @@ function updateCountdown() {
     document.getElementById("minutes").innerText = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
     document.getElementById("seconds").innerText = Math.floor((distance % (1000 * 60)) / 1000);
 }
-setInterval(updateCountdown, 1000);
+
+// Geri sayımı başlat ve sekme görünürlüğüne göre optimize et
+let countdownInterval = setInterval(updateCountdown, 1000);
 updateCountdown();
+document.addEventListener("visibilitychange", () => {
+    if (document.hidden) {
+        clearInterval(countdownInterval);
+    } else {
+        countdownInterval = setInterval(updateCountdown, 1000);
+    }
+});
 
 // Müzik kontrol (iOS uyumlu)
 const music = document.getElementById("bg-music");
@@ -27,12 +36,16 @@ const musicVolume = document.getElementById("music-volume");
 music.volume = 0.5;
 
 musicToggle.addEventListener("click", () => {
-    music.load();
-    music.play().then(() => {
-        musicToggle.style.display = "none";
-        musicPause.style.display = "inline";
-        musicVolume.style.display = "inline";
-    }).catch(err => console.log("Oynatma engellendi:", err));
+    if (music.paused) {
+        music.play().then(() => {
+            musicToggle.style.display = "none";
+            musicPause.style.display = "inline";
+            musicVolume.style.display = "inline";
+        }).catch(err => {
+            console.log("Oynatma engellendi:", err);
+            alert("Müzik oynatılamadı. Lütfen cihazınızın ses ayarlarını veya tarayıcı izinlerini kontrol edin.");
+        });
+    }
 });
 
 musicPause.addEventListener("click", () => {
@@ -45,14 +58,15 @@ musicVolume.addEventListener("input", () => {
     music.volume = parseFloat(musicVolume.value);
 });
 
-// "..." butonu ile mesaj formunu aç/kapa
+// Mesaj formu aç/kapa
 const messageToggle = document.getElementById("message-toggle");
 const messageForm = document.getElementById("message-form");
 
 messageToggle.addEventListener("click", () => {
-    messageForm.style.display = (messageForm.style.display === "none" || messageForm.style.display === "") 
-        ? "flex" 
-        : "none";
+    const isFormVisible = messageForm.style.display === "none" || messageForm.style.display === "";
+    messageForm.style.display = isFormVisible ? "flex" : "none";
+    messageToggle.style.display = isFormVisible ? "none" : "inline";
+    document.getElementById("music-control").style.top = isFormVisible ? "60px" : "15px";
 });
 
 // Mesaj gönderimi
@@ -62,7 +76,10 @@ const messageStatus = document.getElementById("message-status");
 
 sendBtn.addEventListener("click", () => {
     const message = messageInput.value.trim();
-    if (message === "") return;
+    if (message === "") {
+        alert("Lütfen bir mesaj yazın!");
+        return;
+    }
 
     fetch("https://formspree.io/f/xandvwqq", {
         method: "POST",
@@ -72,9 +89,9 @@ sendBtn.addEventListener("click", () => {
         if (response.ok) {
             messageStatus.style.display = "inline";
             messageInput.value = "";
-            setTimeout(() => messageStatus.style.display = "none", 3000);
+            setTimeout(() => messageStatus.style.display = "none", 5000); // Süreyi artırdık
         } else {
-            alert("Mesaj gönderilemedi!");
+            alert("Mesaj gönderilemedi! Formspree bağlantısını kontrol edin.");
         }
-    }).catch(() => alert("Mesaj gönderilemedi!"));
+    }).catch(() => alert("Bağlantı hatası! İnternet bağlantınızı kontrol edin."));
 });

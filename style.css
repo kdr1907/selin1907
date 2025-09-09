@@ -10,7 +10,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background: url("cs.jpg") no-repeat center center/cover;
+    background: url("cs.jpg") no-repeat center center/cover, #000;
     color: #fff;
 }
 
@@ -71,6 +71,26 @@ body {
     #countdown p {
         font-size: 0.7rem;
     }
+    .message-form {
+        bottom: 20px;
+        max-width: 90%;
+    }
+    .message-toggle {
+        bottom: 20px;
+        left: 10px;
+        padding: 5px 10px;
+    }
+}
+
+/* Çok küçük ekranlar için ek ayar */
+@media (max-width: 360px) {
+    .message-form input {
+        width: 100px;
+    }
+    #music-control {
+        top: 10px;
+        right: 10px;
+    }
 }
 
 #music-control {
@@ -80,7 +100,7 @@ body {
     display: flex;
     align-items: center;
     gap: 5px;
-    background: rgba(0,0,0,0.3);
+    background: rgba(0, 0, 0, 0.3);
     padding: 6px 10px;
     border-radius: 25px;
     z-index: 1000;
@@ -97,8 +117,11 @@ body {
     transition: background 0.3s;
 }
 
-#music-control button:hover {
-    background: rgba(255,255,255,0.2);
+#music-control button:hover,
+#music-control button:focus {
+    background: rgba(255, 255, 255, 0.2);
+    outline: 2px solid #fff;
+    outline-offset: 2px;
 }
 
 #music-volume {
@@ -108,17 +131,17 @@ body {
 /* Mesaj formu */
 .message-form {
     position: fixed;
-    bottom: 15px;
+    bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
     align-items: center;
     gap: 8px;
-    background: rgba(0,0,0,0.5);
+    background: rgba(0, 0, 0, 0.5);
     padding: 6px 10px;
     border-radius: 20px;
-    max-width: 85%;
-    z-index: 999;
+    max-width: 90%;
+    z-index: 1002;
 }
 
 .message-form input {
@@ -126,8 +149,13 @@ body {
     border-radius: 15px;
     border: none;
     outline: none;
-    width: 150px;
+    width: 120px;
     font-size: 0.8rem;
+}
+
+.message-form input:focus {
+    outline: 2px solid #ff69b4;
+    outline-offset: 2px;
 }
 
 .message-form button {
@@ -141,9 +169,12 @@ body {
     transition: background 0.3s, transform 0.2s;
 }
 
-.message-form button:hover {
+.message-form button:hover,
+.message-form button:focus {
     background: #ff85c1;
     transform: scale(1.05);
+    outline: 2px solid #fff;
+    outline-offset: 2px;
 }
 
 #message-status {
@@ -154,8 +185,8 @@ body {
 /* "..." butonu */
 .message-toggle {
     position: fixed;
-    bottom: 15px;
-    left: 15px;
+    bottom: 20px;
+    left: 10px;
     background: #ff69b4;
     color: white;
     font-weight: bold;
@@ -166,10 +197,13 @@ body {
     z-index: 1001;
     text-align: center;
     line-height: 1;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
     transition: transform 0.2s;
 }
 
-.message-toggle:hover {
+.message-toggle:hover,
+.message-toggle:focus {
     transform: scale(1.1);
+    outline: 2px solid #fff;
+    outline-offset: 2px;
 }

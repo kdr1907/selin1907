@@ -10,14 +10,15 @@
     <!-- Müzik -->
     <audio id="bg-music" loop playsinline preload="auto">
         <source src="muzik.mp3" type="audio/mpeg">
+        <source src="muzik.m4a" type="audio/mp4">
         Tarayıcınız audio elementini desteklemiyor.
     </audio>
 
     <!-- Müzik kontrol kutusu -->
     <div id="music-control">
-        <button id="music-toggle">🎵</button>
-        <button id="music-pause" style="display:none;">⏸</button>
-        <input type="range" id="music-volume" min="0" max="1" step="0.01" value="0.5" style="display:none;">
+        <button id="music-toggle" aria-label="Müziği Aç/Kapat">🎵</button>
+        <button id="music-pause" style="display:none;" aria-label="Müziği Durdur">⏸</button>
+        <input type="range" id="music-volume" min="0" max="1" step="0.01" value="0.5" style="display:none;" aria-label="Ses Seviyesi">
     </div>
 
     <div class="overlay">
@@ -34,9 +35,9 @@
 
     <!-- Mesaj formu -->
     <div class="message-form" id="message-form" style="display:none;">
-        <input type="text" id="message-input" placeholder="...">
+        <input type="text" id="message-input" placeholder="Mesajınızı yazın..." maxlength="200" aria-label="Mesaj yazma alanı">
         <button id="send-message">Gönder</button>
-        <p id="message-status" style="display:none;">Okıcam - davar</p>
+        <p id="message-status" style="display:none;" aria-live="polite">Mesaj gönderildi!</p>
     </div>
 
     <script src="script.js"></script>
