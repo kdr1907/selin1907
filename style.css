@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Arial', sans-serif;
+    font-family: Arial, sans-serif;
 }
 
 body {
@@ -10,7 +10,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background: url("farka-plan.jpg") no-repeat center center/cover;
+    background: url("cs.jpg") no-repeat center center/cover;
     color: #fff;
 }
 
@@ -24,13 +24,6 @@ body {
     border-radius: 15px;
     width: 90%;
     max-width: 400px;
-}
-
-h1 {
-    font-size: 1.5rem;
-    font-weight: 600;
-    text-align: center;
-    margin-bottom: 10px;
 }
 
 #countdown {
@@ -56,7 +49,6 @@ h1 {
 #countdown span {
     font-size: 2rem;
     font-weight: bold;
-    display: block;
 }
 
 #countdown p {
@@ -64,10 +56,13 @@ h1 {
     margin-top: 5px;
 }
 
-/* Responsive */
+/* Mobil uyum */
 @media (max-width: 500px) {
+    .overlay {
+        padding: 15px;
+    }
     #countdown div {
-        padding: 10px 14px;
+        padding: 8px 12px;
         min-width: 45px;
     }
     #countdown span {
@@ -75,9 +70,6 @@ h1 {
     }
     #countdown p {
         font-size: 0.7rem;
-    }
-    h1 {
-        font-size: 1.2rem;
     }
 }
 
@@ -112,6 +104,8 @@ h1 {
 #music-volume {
     width: 80px;
 }
+
+/* Mesaj formu */
 .message-form {
     position: fixed;
     bottom: 15px;
@@ -124,7 +118,6 @@ h1 {
     padding: 6px 10px;
     border-radius: 20px;
     max-width: 85%;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.3);
 }
 
 .message-form input {
@@ -141,20 +134,23 @@ h1 {
     border-radius: 15px;
     font-size: 0.8rem;
     border: none;
-    background: #ff69b4; /* Canlı pembe renk */
+    background: #ff69b4;
     color: white;
     cursor: pointer;
     transition: background 0.3s, transform 0.2s;
+}
+
+.message-form button:hover {
+    background: #ff85c1;
+    transform: scale(1.05);
 }
 
 #message-status {
     margin-left: 8px;
     font-size: 0.8rem;
 }
-.message-form button:hover {
-    background: #ff85c1; /* Hoverda daha açık pembe */
-    transform: scale(1.05);
-}
+
+/* "..." butonu */
 .message-toggle {
     position: fixed;
     bottom: 15px;
@@ -176,4 +172,3 @@ h1 {
 .message-toggle:hover {
     transform: scale(1.1);
 }
-

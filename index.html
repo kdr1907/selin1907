@@ -8,7 +8,7 @@
 </head>
 <body>
     <!-- Müzik -->
-    <audio id="bg-music" loop>
+    <audio id="bg-music" loop playsinline preload="auto">
         <source src="muzik.mp3" type="audio/mpeg">
         Tarayıcınız audio elementini desteklemiyor.
     </audio>
@@ -21,7 +21,6 @@
     </div>
 
     <div class="overlay">
-        
         <div id="countdown">
             <div><span id="days">0</span><p>Gün</p></div>
             <div><span id="hours">0</span><p>Saat</p></div>
@@ -30,19 +29,16 @@
         </div>
     </div>
 
-
     <!-- Mesaj açma butonu -->
-<div class="message-toggle" id="message-toggle">...</div>
+    <div class="message-toggle" id="message-toggle">...</div>
 
-<!-- Mesaj formu gizli -->
-<div class="message-form" id="message-form" style="display:none;">
-    <input type="text" id="message-input" placeholder="Mesajınızı yazın...">
-    <button id="send-message">Gönder</button>
-    <p id="message-status" style="display:none;">Okıcam - davar</p>
-</div>
+    <!-- Mesaj formu gizli -->
+    <div class="message-form" id="message-form" style="display:none;">
+        <input type="text" id="message-input" placeholder="...">
+        <button id="send-message">Gönder</button>
+        <p id="message-status" style="display:none;">Okıcam - davar</p>
+    </div>
 
-
-    
     <script src="script.js"></script>
 </body>
 </html>
