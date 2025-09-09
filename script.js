@@ -15,7 +15,6 @@ function updateCountdown() {
     document.getElementById("minutes").innerText = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
     document.getElementById("seconds").innerText = Math.floor((distance % (1000 * 60)) / 1000);
 }
-
 setInterval(updateCountdown, 1000);
 updateCountdown();
 
@@ -28,10 +27,12 @@ const musicVolume = document.getElementById("music-volume");
 music.volume = 0.5;
 
 musicToggle.addEventListener("click", () => {
-    music.play().catch(err => console.log("Oynatma engellendi:", err));
-    musicToggle.style.display = "none";
-    musicPause.style.display = "inline";
-    musicVolume.style.display = "inline";
+    music.load();
+    music.play().then(() => {
+        musicToggle.style.display = "none";
+        musicPause.style.display = "inline";
+        musicVolume.style.display = "inline";
+    }).catch(err => console.log("Oynatma engellendi:", err));
 });
 
 musicPause.addEventListener("click", () => {
@@ -44,12 +45,14 @@ musicVolume.addEventListener("input", () => {
     music.volume = parseFloat(musicVolume.value);
 });
 
-// "..." butonuna tıklayınca form aç/kapa
+// "..." butonu ile mesaj formunu aç/kapa
 const messageToggle = document.getElementById("message-toggle");
 const messageForm = document.getElementById("message-form");
 
 messageToggle.addEventListener("click", () => {
-    messageForm.style.display = (messageForm.style.display === "none") ? "flex" : "none";
+    messageForm.style.display = (messageForm.style.display === "none" || messageForm.style.display === "") 
+        ? "flex" 
+        : "none";
 });
 
 // Mesaj gönderimi
