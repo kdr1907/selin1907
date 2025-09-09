@@ -7,6 +7,19 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Müzik -->
+    <audio id="bg-music" loop>
+        <source src="muzik.mp3" type="audio/mpeg">
+        Tarayıcınız audio elementini desteklemiyor.
+    </audio>
+
+    <!-- Müzik kontrol kutusu -->
+    <div id="music-control">
+        <button id="music-toggle">🎵</button>
+        <button id="music-pause" style="display:none;">⏸</button>
+        <input type="range" id="music-volume" min="0" max="1" step="0.01" value="0.5" style="display:none;">
+    </div>
+
     <div class="overlay">
         
         <div id="countdown">
@@ -16,6 +29,20 @@
             <div><span id="seconds">0</span><p>Saniye</p></div>
         </div>
     </div>
+
+
+    <!-- Mesaj açma butonu -->
+<div class="message-toggle" id="message-toggle">...</div>
+
+<!-- Mesaj formu gizli -->
+<div class="message-form" id="message-form" style="display:none;">
+    <input type="text" id="message-input" placeholder="Mesajınızı yazın...">
+    <button id="send-message">Gönder</button>
+    <p id="message-status" style="display:none;">Okıcam - davar</p>
+</div>
+
+
+    
     <script src="script.js"></script>
 </body>
 </html>
